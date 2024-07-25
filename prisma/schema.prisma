@@ -14,3 +14,10 @@ model User {
   email     String   @unique
   password  String
 }
+
+model Task {
+    id    Int    @id @default(autoincrement())
+    title String
+    status  String
+    userId Int
+}

@@ -1,6 +1,8 @@
 import jwt from 'jsonwebtoken';
-export const validateJWT = (request) => {
-  const token = request.headers.get('Authorization')?.split('Bearer ').pop() || '';
+import { headers } from 'next/headers';
+export const validateJWT = () => {
+  const headersList = headers()
+  const token = headersList.get('Authorization')?.split('Bearer ').pop();
   if (token) {
     try {
       const jwtSecret = process.env.AUTH_PRIVATE_KEY ? process.env.AUTH_PRIVATE_KEY : 'shhhhh';
